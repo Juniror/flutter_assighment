@@ -78,7 +78,7 @@ class _WeatherState extends State<Weather> {
         }
       }
     } catch (e) {
-      print("Error: $e");
+      throw Exception("Error: $e");
     }
   }
 

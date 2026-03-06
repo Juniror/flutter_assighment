@@ -3,8 +3,7 @@ import 'Model/product.dart';
 import 'product_service.dart';
 
 class ProductForm extends StatefulWidget {
-  final Product? product;
-  const ProductForm({super.key, this.product});
+  const ProductForm({super.key});
 
   @override
   State<ProductForm> createState() => _ProductFormState();
@@ -12,21 +11,9 @@ class ProductForm extends StatefulWidget {
 
 class _ProductFormState extends State<ProductForm> {
   final _formKey = GlobalKey<FormState>();
-  late final _name = TextEditingController(text: widget.product?.name ?? '');
-  late final _desc = TextEditingController(
-    text: widget.product?.description ?? '',
-  );
-  late final _price = TextEditingController(
-    text: widget.product?.price.toString() ?? '',
-  );
-
-  bool isEditing() {
-    if (widget.product != null) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  late final _name = TextEditingController();
+  late final _desc = TextEditingController();
+  late final _price = TextEditingController();
 
   Future<void> save() async {
     if (_formKey.currentState!.validate() == false) {
@@ -39,21 +26,10 @@ class _ProductFormState extends State<ProductForm> {
       price: double.parse(_price.text),
     );
 
-    if (isEditing()) {
-      await ProductService.update(widget.product!.id!, product);
-    } else {
-      await ProductService.create(product);
-    }
-
-    String message = "";
-    if (isEditing()) {
-      message = "แก้ไขสำเร็จ";
-    } else {
-      message = "เพิ่มสำเร็จ";
-    }
+    await ProductService.create(product);
 
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message), backgroundColor: Colors.green),
+      SnackBar(content: Text("เพิ่มสำเร็จ"), backgroundColor: Colors.green),
     );
 
     Navigator.pop(context, true);
@@ -61,23 +37,9 @@ class _ProductFormState extends State<ProductForm> {
 
   @override
   Widget build(BuildContext context) {
-    String titleText = "";
-    if (isEditing()) {
-      titleText = "แก้ไขสินค้า";
-    } else {
-      titleText = "เพิ่มสินค้า";
-    }
-
-    String buttonText = "";
-    if (isEditing()) {
-      buttonText = "บันทึก";
-    } else {
-      buttonText = "เพิ่มสินค้า";
-    }
-
     return Scaffold(
       appBar: AppBar(
-        title: Text(titleText),
+        title: Text("เพิ่มสินค้า"),
         backgroundColor: Colors.teal,
         foregroundColor: Colors.white,
       ),
@@ -136,7 +98,7 @@ class _ProductFormState extends State<ProductForm> {
                     backgroundColor: Colors.teal,
                     foregroundColor: Colors.white,
                   ),
-                  child: Text(buttonText, style: TextStyle(fontSize: 16)),
+                  child: Text("เพิ่มสินค้า", style: TextStyle(fontSize: 16)),
                 ),
               ),
             ],

@@ -54,7 +54,7 @@ class _ManagerState extends State<Manager> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text("ลบสินค้าสำเร็จ"),
-          backgroundColor: Colors.green,
+          backgroundColor: Colors.red,
         ),
       );
       loadProducts();
@@ -82,27 +82,21 @@ class _ManagerState extends State<Manager> {
             ),
             title: Text(p.name, style: TextStyle(fontWeight: FontWeight.bold)),
             subtitle: Text(p.description ?? ""),
-            trailing: Text(
-              "${p.price}",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            onTap: () async {
-              final result = await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return ProductForm(product: p);
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "${p.price}",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                IconButton(
+                  icon: Icon(Icons.delete, color: Colors.red),
+                  onPressed: () {
+                    deleteProduct(p.id!);
                   },
                 ),
-              );
-
-              if (result == true) {
-                loadProducts();
-              }
-            },
-            onLongPress: () {
-              deleteProduct(p.id!);
-            },
+              ],
+            ),
           );
         },
       ),

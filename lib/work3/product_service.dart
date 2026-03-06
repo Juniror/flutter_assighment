@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'Model/product.dart';
 
 class ProductService {
-  static const String baseUrl = "http://10.0.2.2:8001";
+  static String? baseUrl = dotenv.env['BASE_URL'];
 
   static Future<List<Product>> getAll() async {
     final response = await http.get(Uri.parse("$baseUrl/products"));
