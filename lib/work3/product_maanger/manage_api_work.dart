@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../product_maanger/Model/product.dart';
-import '../product_maanger/product_service.dart';
-import '../product_maanger/product_form.dart';
+import 'Model/product.dart';
+import 'product_service.dart';
+import 'product_form.dart';
 
 class Manager extends StatefulWidget {
   const Manager({super.key});
