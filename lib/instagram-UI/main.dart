@@ -1,4 +1,5 @@
-import 'package:assighment/work2/Answer1.dart';
+
+import 'package:assighment/instagram-UI/Instragram.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
             GoogleFonts.maliTextTheme(),
       ),
       title: 'Demo',
-      home: Register(),
+      home: Instragram(),
+      
     );
   }
 }
