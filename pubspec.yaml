@@ -64,6 +64,7 @@ flutter:
   assets:
     - lib/work3/.env
     - lib/instagram-UI/assets/
+    - lib/instagram-UI/assets/pics/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

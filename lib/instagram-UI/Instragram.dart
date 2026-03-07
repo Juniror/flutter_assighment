@@ -116,6 +116,7 @@ class Instragram extends StatelessWidget {
                     'lib/instagram-UI/assets/secret.png',
                     'lib/instagram-UI/assets/white.png',
                     'lib/instagram-UI/assets/yellow.png',
+                    'lib/instagram-UI/assets/pics/pics.png',
                   ];
                   return Image.asset(
                     images[index % images.length],

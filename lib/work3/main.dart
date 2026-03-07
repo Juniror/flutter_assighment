@@ -1,5 +1,6 @@
-import 'package:assighment/work3/weather/manage_api_work.dart';
 
+
+import 'package:assighment/work3/weather/weather.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
             GoogleFonts.maliTextTheme(),
       ),
       title: 'Flutter Demo',
-      home: Manager(),
+      home: Weather(),
     );
   }
 }

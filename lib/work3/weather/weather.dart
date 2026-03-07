@@ -78,7 +78,11 @@ class _WeatherState extends State<Weather> {
         }
       }
     } catch (e) {
-      throw Exception("Error: $e");
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text("Error: $e")));
+      }
     }
   }
 
@@ -92,7 +96,28 @@ class _WeatherState extends State<Weather> {
       appBar: AppBar(title: Text("Air Quality Index (AQI)"), centerTitle: true),
       body: Center(
         child: weatherData == null
-            ? Text("กดปุ่มเพื่อโหลดข้อมูล", style: TextStyle(fontSize: 18))
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("กดปุ่มเพื่อโหลดข้อมูล", style: TextStyle(fontSize: 18)),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: fetchData,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green[700],
+                      foregroundColor: Colors.white,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 30,
+                        vertical: 12,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    child: Text("โหลดข้อมูล", style: TextStyle(fontSize: 16)),
+                  ),
+                ],
+              )
             : Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
